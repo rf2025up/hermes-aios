@@ -69,6 +69,7 @@
 | **Hermes-WSL2-完整方案-已解决.md** | Gateway进程保活+Fallback三级切换+运维命令（含飞书摘要版） |
 | CHANGELOG.md | 系统变更日志 |
 | OPERATING_SYSTEM.md | 操作系统配置 |
+| **HERMES-GIT-BACKUP.md** | Git仓库备份配置（仓库：https://github.com/rf2025up/hermes-aios） |
 
 ## 📁 历史存档（OpenClaw迁移，不再活跃更新）
 
