@@ -1,0 +1,181 @@
+# 抖音逐字稿系统 - 技术方案 & 任务进度
+
+> 最后更新: 2026-04-24 00:41
+> 状态: 🟢 后台执行中
+
+## 一、技术方案
+
+### 1.1 管线架构
+```
+抖音链接/用户主页 → 解析视频ID → 移动端分享页抓取SSR数据 → 提取视频URL
+→ wget下载视频 → ffmpeg提取音频 → 通义千问paraformer语音识别 → MD文件
+```
+
+### 1.2 核心组件
+
+| 组件 | 技术方案 | 说明 |
+|------|----------|------|
+| URL解析 | 移动端分享页 `m.douyin.com/share/video/{id}` | PC端无SSR数据，必须转移动端 |
+| 短链解析 | 跟随重定向 → 正则提取19位视频ID | `v.douyin.com/xxx` 格式 |
+| 视频列表 | 浏览器CDP + 抖音API `/aweme/v1/web/aweme/post/` | 需要登录cookie，通过浏览器fetch获取 |
+| 视频下载 | `wget` + 移动端UA + Referer防盗链 | `aweme.snssdk.com` 域名 |
+| 音频提取 | `ffmpeg -vn -acodec libmp3lame -ar 16000 -ac 1` | 16kHz单声道MP3 |
+| 语音识别 | DashScope `paraformer-realtime-8k-v2` | 免费，中文识别质量好，支持本地文件直接调用 |
+| 断点续传 | 检查已存在的MD文件名 → 跳过 | 重跑不重复下载 |
+
+### 1.3 关键发现
+
+1. **PC端页面无SSR数据**（72914字节JS VM），移动端分享页有完整`_ROUTER_DATA`
+2. **用户主页纯JS渲染**，需要浏览器登录后调API获取视频列表
+3. **DashScope语音识别**：
+   - `Transcription.async_call` 需要OSS URL，本地上传后找不到正确路径 ❌
+   - `Recognition.call(file=本地路径)` 同步识别，直接可用 ✅
+   - 必须传 `callback=None` 参数
+4. **Cookie获取**：通过浏览器CDP `document.cookie` 导出，存到 `~/.openclaw/douyin_cookies.txt`
+5. **视频下载限制**：需要UA+Referer，部分视频会403（可能是地域/时效限制）
+
+### 1.4 脚本文件
+
+| 文件 | 用途 |
+|------|------|
+| `scripts/douyin-transcript.py` | 单条视频链接 → 逐字稿（CLI工具） |
+| `scripts/douyin-batch-full.py` | 批量处理（读ID列表，断点续传，保存MD） |
+
+### 1.5 API Key & 配置
+
+- **DashScope API Key**: `sk-086a8e0fc3ef446da480aa8996cda89c`
+  - 存储位置: `~/.openclaw/openclaw.json` → `apiKeys.dashscope`
+  - 环境变量: `DASHSCOPE_API_KEY`
+- **依赖**: `pip install dashscope`（已装）
+- **DashScope包版本**: 最新版（2026-04-23安装）
+- **ffmpeg**: 系统自带
+
+### 1.6 执行命令
+
+```bash
+# 单条视频
+DASHSCOPE_API_KEY="sk-086a8e0fc3ef446da480aa8996cda89c" python3 scripts/douyin-transcript.py "https://v.douyin.com/xxx/"
+
+# 批量处理（全量194个）
+DASHSCOPE_API_KEY="sk-086a8e0fc3ef446da480aa8996cda89c" python3 scripts/douyin-batch-full.py
+
+# 如果中途中断，直接重跑即可（自动断点续传）
+```
+
+---
+
+## 二、当前任务：为何小姐（绿毛怪怪）全量视频转文字
+
+### 2.1 任务信息
+
+- **博主**: 绿毛怪怪（为何小姐）
+- **抖音主页**: https://www.douyin.com/user/MS4wLjABAAAAXfOk8TEP_03iR62uHQGJ1UhbqeCtnvYC88UoX_H5Oas
+- **sec_uid**: `MS4wLjABAAAAXfOk8TEP_03iR62uHQGJ1UhbqeCtnvYC88UoX_H5Oas`
+- **视频总数**: 194个
+- **视频ID列表**: `/tmp/douyin_all_ids.json`（194个ID）
+- **保存目录**: `~/.openclaw/workspace/为何小姐/`
+- **文件格式**: 每个视频一个MD文件，文件名格式 `{标题前40字}_{视频ID前8位}.md`
+- **汇总文件**: `为何小姐/00_汇总索引.md`
+- **日志文件**: `为何小姐/batch_log.txt`
+
+### 2.2 执行状态
+
+- **第一轮** (00:42-02:25, session swift-bloom): 138成功, 11跳过, 45失败
+- **第二轮补漏** (02:27-02:55, session kind-valley): 165成功, 14跳过, 15失败
+- **最终结果**: ✅ 165个视频逐字稿完成
+- **14个跳过**: 11个超10分钟 + 2个图文帖 + 1个超长
+- **15个持久失败**: 403 Forbidden / SSL错误 / 信息获取失败（多次重试仍失败，可能是视频下架或地域限制）
+
+### 2.3 进度追踪
+
+**重启后检查进度的方法：**
+```bash
+# 查看日志最后几行
+tail -20 ~/.openclaw/workspace/为何小姐/batch_log.txt
+
+# 统计已完成的MD文件数
+ls ~/.openclaw/workspace/为何小姐/*.md | wc -l
+
+# 查看是否有进程在跑
+ps aux | grep douyin-batch-full
+```
+
+**如果进程已死/中断，重跑：**
+```bash
+DASHSCOPE_API_KEY="sk-086a8e0fc3ef446da480aa8996cda89c" python3 ~/.openclaw/workspace/scripts/douyin-batch-full.py
+```
+脚本会自动跳过已存在的MD文件。
+
+### 2.4 已知问题
+
+- 部分视频403 Forbidden（可能是地域限制或视频已下架）
+- 部分视频音频提取失败（可能是纯音乐/无声视频）
+- 超过10分钟的视频自动跳过
+- 图文帖(type=2)自动跳过
+- 重跑可以补上之前失败的视频（失败的没有生成MD，不会被跳过）
+
+### 2.5 MD文件格式
+
+```markdown
+# {视频标题}
+
+- **博主**: {博主名}
+- **发布日期**: {YYYY-MM-DD}
+- **时长**: {秒}秒
+- **互动**: ❤️{点赞} 💬{评论} 🔄{分享}
+- **链接**: https://www.douyin.com/video/{id}
+
+---
+
+## 逐字稿
+
+{语音识别全文}
+```
+
+---
+
+## 三、语音识别方案（多引擎 + 本地备选）
+
+### 3.1 当前方案：DashScope Paraformer（云）
+
+- 模型：`paraformer-realtime-8k-v2`（36000免费额度，已用完）
+- 自动回退：6个模型依次尝试（8k-v2 → 16k-v2 → 16k-v1 → sensevoice → v2 → v1）
+- 403自动切换：`AllocationQuota.FreeTierOnly` 错误时跳到下一个模型
+- 账户设置：免费额度用完即停（返回403，不扣余额）
+
+### 3.2 备选方案
+
+| 方案 | 价格 | 中文准确率 | 免费额度 | 特点 |
+|------|------|-----------|---------|------|
+| 百炼 Paraformer | 0.01元/次 | 95%+ | 36000次 | 当前方案 |
+| 讯飞开放平台 | 0 | 96%+ | 5小时/天 | 中文最强 |
+| 阿里云智能语音 | 0 | 95%+ | 2小时/天 | 独立于百炼的额度 |
+| 腾讯云ASR | 0 | 94%+ | 10小时/月 | 额度多 |
+| **FunASR（本地）** | **0** | **95%+** | **无限制** | **推荐长期方案** |
+
+### 3.3 FunASR 本地方案（推荐）
+
+- **来源**：阿里达摩院开源，modelscope/FunASR
+- **模型**：paraformer-zh（与百炼云版同架构）
+- **优势**：免费、无限制、离线可用、不依赖网络
+- **速度**：RTF 0.04（比实时快25倍，1分钟音频约2.4秒）
+- **内存**：2-4G显存（GPU）/ 4-8G内存（CPU）
+- **功能**：自动标点、时间戳、语音端点检测、热词
+- **安装**：`pip install funasr modelscope torch torchaudio`
+
+### 3.4 策略
+
+- **日常批量**：FunASR 本地跑（免费无限制）
+- **单条快速**：DashScope 云端（速度快，免费额度够用）
+- **全部失败兜底**：讯飞（每天5小时免费）
+
+---
+
+## 四、后续可扩展
+
+- [ ] 接入飞书多维表格自动写入
+- [ ] 微信视频号解析
+- [ ] 批量链接输入（一次丢多个链接）
+- [ ] 自动生成内容分析/选题建议
+- [ ] 其他博主采集
+- [ ] FunASR本地模式集成到转写脚本
