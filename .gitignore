@@ -18,3 +18,6 @@ scripts/paraformer_results.json
 
 # Hermes自身（不是我们的资产）
 hermes-agent/
+
+# 转写原文（体积大，可从v2.json重建）
+scripts/transcription_results/*.txt
