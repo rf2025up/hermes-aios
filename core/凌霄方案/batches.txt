@@ -1,0 +1,117 @@
+=== 批次1 ===
+/root/workspace/aios/scripts/transcription_results/2023-10-14 20-54-07.txt
+/root/workspace/aios/scripts/transcription_results/2023-10-16 22-09-01.txt
+/root/workspace/aios/scripts/transcription_results/2023-10-21 20-31-11.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_214924.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_215929.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_220931.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_221934.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_222937.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_223940.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_224944.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_225947.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_230950.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-12_231953.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_211422.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_212425.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_213428.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_213711.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_214713.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_215716.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_220719.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_221722.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_222725.txt
+
+=== 批次2 ===
+/root/workspace/aios/scripts/transcription_results/2024-10-14_223728.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-14_224730.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_220045.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_221051.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_222054.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_223057.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_224100.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_225103.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_230105.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_231108.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_232111.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-15_232756.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_214855.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_215859.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_220901.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_221904.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_222908.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_223911.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_224914.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_225917.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_230921.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-16_231025.txt
+
+=== 批次3 ===
+/root/workspace/aios/scripts/transcription_results/2024-10-18_090241.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_091248.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_092252.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_093255.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_094257.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_095300.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-18_100106.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_211215.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_212218.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_213221.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_214224.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_215227.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_220230.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_221233.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_222236.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_223239.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_224242.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_225324.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_230327.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_231331.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_232333.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_233336.txt
+
+=== 批次4 ===
+/root/workspace/aios/scripts/transcription_results/2024-10-21_234339.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-21_235343.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_000116.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_211515.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_212520.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_213523.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_214526.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_215529.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_220532.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_221535.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_222538.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_223541.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-22_224544.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_214031.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_215034.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_220037.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_221039.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_222043.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_223046.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_224048.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_225051.txt
+/root/workspace/aios/scripts/transcription_results/2024-10-24_230054.txt
+
+=== 批次5 ===
+/root/workspace/aios/scripts/transcription_results/2024-10-24_231057.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-14 20-40-19.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-14 21-11-08.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-14 22-48-54.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-14 22-54-04.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-15 20-31-27.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-15 21-58-24.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-17 21-37-34.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-17 22-55-00.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-17 23-19-13.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-18 20-31-30.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-20 20-32-00.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-20 22-29-24.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-20 23-27-23.txt
+/root/workspace/aios/scripts/transcription_results/已转码2023-10-23 20-30-35.txt
+/root/workspace/aios/scripts/transcription_results/已转码2024-10-31 23-03-55.txt
+/root/workspace/aios/scripts/transcription_results/已转码2024-11-01 07-57-23.txt
+/root/workspace/aios/scripts/transcription_results/已转码2024-11-01 20-14-31.txt
+/root/workspace/aios/scripts/transcription_results/已转码2024-11-01 20-27-12.txt
+

@@ -1,0 +1,247 @@
+#!/usr/bin/env python3
+"""Paraformer 批量转写 v3 — 多模型自动切换版
+使用新key（bailian-backup-202605），优先消耗免费额度，额度耗尽自动切换下一个模型。
+原脚本 v2 不改动，v2 使用 DASHSCOPE_API_KEY 环境变量（旧key恢复后可继续用）。
+
+模型优先级：
+1. fun-asr-2025-11-07（免费额度优先消耗）
+2. paraformer-v1
+3. paraformer-v2
+
+用法: python3 paraformer_batch_v3.py [directory]
+"""
+import os, sys, json, time, requests, glob, fcntl, threading
+
+# --- 从 auth.json 提取新 key ---
+def get_new_key():
+    auth_path = "/root/.hermes/auth.json"
+    if not os.path.exists(auth_path):
+        return None
+    with open(auth_path) as f:
+        data = json.load(f)
+    for e in data.get("credential_pool", {}).get("custom:bailian", []):
+        if e.get("label", "") == "bailian-backup-202605":
+            return e.get("access_token", "")
+    return None
+
+API_KEY = get_new_key()
+if not API_KEY:
+    print("ERROR: bailian-backup-202605 key not found in auth.json")
+    sys.exit(1)
+os.environ["DASHSCOPE_API_KEY"] = API_KEY
+
+from dashscope.audio.asr import Transcription
+from dashscope import Files
+
+# --- 配置 ---
+RESULTS_DIR = "/root/workspace/aios/scripts/transcription_results"
+RESULTS_FILE = os.path.join(RESULTS_DIR, "paraformer_results_v2.json")  # 复用v2的结果文件
+os.makedirs(RESULTS_DIR, exist_ok=True)
+
+# 模型优先级：fun-asr-2025-08-25免费额度已耗尽，paraformer-v1免费也耗尽，直接用v2
+MODEL_PRIORITY = [
+    "paraformer-v2",
+]
+
+current_model_idx = 0
+
+def load_results():
+    if os.path.exists(RESULTS_FILE):
+        with open(RESULTS_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_results(results):
+    with open(RESULTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+
+
+def _wait_with_timeout(task, timeout=600):
+    """Wrap Transcription.wait with timeout to prevent hanging"""
+    result = [None]
+    exception = [None]
+    def worker():
+        try:
+            result[0] = Transcription.wait(task=task)
+        except Exception as e:
+            exception[0] = e
+    t = threading.Thread(target=worker, daemon=True)
+    t.start()
+    t.join(timeout=timeout)
+    if t.is_alive():
+        print(f"    WARNING: wait() timed out after {timeout}s", flush=True)
+        class FakeResult:
+            status_code = 408
+            output = {"task_status": "FAILED", "message": f"Timeout after {timeout}s"}
+            message = f"Timeout after {timeout}s"
+            code = "Timeout"
+        return FakeResult()
+    if exception[0]:
+        raise exception[0]
+    return result[0]
+
+def transcribe_one(file_path):
+    """单个文件转写，当前模型失败自动切换下一个"""
+    global current_model_idx
+    fname = os.path.basename(file_path)
+    fsize_mb = os.path.getsize(file_path) / 1024 / 1024
+
+    # 1. Upload
+    upload_resp = Files.upload(file_path=file_path, purpose='file-extract')
+    if upload_resp.status_code != 200:
+        return None, f"upload fail: {upload_resp.status_code}"
+    file_id = upload_resp.output.get('uploaded_files', [{}])[0].get('file_id', '')
+    if not file_id:
+        return None, "no file_id"
+
+    # 2. Get URL
+    file_info = Files.get(file_id=file_id)
+    file_url = file_info.output.get('url', '')
+    if not file_url:
+        return None, "no url"
+
+    # 3. 尝试当前模型，失败则切换
+    tried = []
+    while current_model_idx < len(MODEL_PRIORITY):
+        model = MODEL_PRIORITY[current_model_idx]
+        if model in tried:
+            break
+        tried.append(model)
+
+        try:
+            task = Transcription.call(model=model, file_urls=[file_url])
+            if task.status_code != 200:
+                err_msg = getattr(task, 'message', str(task.status_code))
+                print(f"    ⚠️ {model} 提交失败: {err_msg}", flush=True)
+                current_model_idx += 1
+                continue
+
+            result = _wait_with_timeout(task)
+            if result.status_code != 200:
+                err_msg = getattr(result, 'message', str(result.status_code))
+                print(f"    ⚠️ {model} 等待失败: {err_msg}", flush=True)
+                current_model_idx += 1
+                continue
+
+            status = result.output.get('task_status', '')
+            msg = result.output.get('message', '')
+
+            if status != 'SUCCEEDED':
+                # 判断是否额度耗尽
+                msg_lower = msg.lower() if msg else ""
+                if 'quota' in msg_lower or 'limit' in msg_lower or 'balance' in msg_lower or 'insufficient' in msg_lower:
+                    print(f"    ⚠️ {model} 额度耗尽: {msg}", flush=True)
+                    current_model_idx += 1
+                    continue
+                else:
+                    return None, f"task {status}: {msg}"
+
+            # 4. 成功 - 下载解析
+            results_list = result.output.get('results', [])
+            if not results_list:
+                return None, "no results"
+
+            turl = results_list[0].get('transcription_url', '')
+            if not turl:
+                return None, "no transcription_url"
+
+            resp = requests.get(turl, timeout=120)
+            if resp.status_code != 200:
+                return None, f"download fail: {resp.status_code}"
+
+            data = json.loads(resp.text)
+            transcripts = data.get('transcripts', [])
+            if not transcripts:
+                return None, "no transcripts"
+
+            text = transcripts[0].get('text', '')
+            duration_ms = transcripts[0].get('content_duration_in_milliseconds', 0)
+
+            print(f"    ✅ via {model}", flush=True)
+            return {
+                'text': text,
+                'duration_ms': duration_ms,
+                'duration_min': round(duration_ms / 60000, 1),
+                'file_size_mb': round(fsize_mb, 2),
+                'char_count': len(text),
+                'model': model,
+            }, None
+
+        except Exception as e:
+            print(f"    ⚠️ {model} 异常: {e}", flush=True)
+            current_model_idx += 1
+            continue
+
+    return None, f"所有模型均失败: {', '.join(tried)}"
+
+
+if __name__ == "__main__":
+    # 进程锁
+    lock_path = os.path.join(RESULTS_DIR, ".transcribe_v3.lock")
+    try:
+        lock_fd = open(lock_path, 'w')
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (IOError, OSError):
+        print("Another transcription process is running, exiting.", flush=True)
+        sys.exit(0)
+
+    if len(sys.argv) < 2:
+        directory = "/mnt/h/抖音直播录制/"
+    else:
+        directory = sys.argv[1]
+
+    # 扫描所有m4a文件
+    files = sorted(glob.glob(os.path.join(directory, "**/*.m4a"), recursive=True))
+    if not files:
+        print(f"ERROR: No .m4a files found in {directory}")
+        sys.exit(1)
+
+    print(f"[v3] 使用key: sk-...{API_KEY[-6:]}", flush=True)
+    print(f"[v3] 模型优先级: {' > '.join(MODEL_PRIORITY)}", flush=True)
+    print(f"Found {len(files)} m4a files in {directory}", flush=True)
+
+    # 加载已有结果
+    results = load_results()
+    done = set(results.keys())
+    print(f"Already completed: {len(done)}", flush=True)
+    remaining = [f for f in files if os.path.basename(f) not in done]
+    print(f"Remaining: {len(remaining)}", flush=True)
+
+    if not remaining:
+        print("All files already transcribed!")
+        sys.exit(0)
+
+    # 逐个处理
+    total = len(remaining)
+    consecutive_fail = 0
+    for i, f in enumerate(remaining, 1):
+        fname = os.path.basename(f)
+        t0 = time.time()
+        print(f"[{i}/{total}] {fname} ({os.path.getsize(f)/1024/1024:.1f}MB) [model={MODEL_PRIORITY[min(current_model_idx, len(MODEL_PRIORITY)-1)]}]", flush=True)
+
+        result, err = transcribe_one(f)
+        elapsed = time.time() - t0
+
+        if result:
+            results[fname] = result
+            save_results(results)
+            print(f"  ✅ OK ({result['duration_min']}min, {result['char_count']}chars, {elapsed:.0f}s)", flush=True)
+            # 保存单独txt
+            txt_path = os.path.join(RESULTS_DIR, f"{os.path.splitext(fname)[0]}.txt")
+            with open(txt_path, "w", encoding="utf-8") as tf:
+                tf.write(result['text'])
+            consecutive_fail = 0
+        else:
+            consecutive_fail += 1
+            print(f"  ❌ FAIL ({err}, {elapsed:.0f}s)", flush=True)
+            # 连续失败5次且所有模型都试过，停止
+            if consecutive_fail >= 5 and current_model_idx >= len(MODEL_PRIORITY):
+                print(f"\n⛔ 连续失败{consecutive_fail}次且所有模型均已耗尽，停止运行", flush=True)
+                print(f"💡 请充值后重启，或使用 v2 脚本（旧key恢复后）", flush=True)
+                break
+
+    # 统计
+    print(f"\n{'='*60}")
+    print(f"SUMMARY: total={len(files)}, completed={len(results)}, remaining={len(files)-len(results)}")
+    print(f"Last model: {MODEL_PRIORITY[min(current_model_idx, len(MODEL_PRIORITY)-1)]}")
+    print(f"Results: {RESULTS_FILE}")

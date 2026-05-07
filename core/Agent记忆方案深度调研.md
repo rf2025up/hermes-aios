@@ -216,7 +216,7 @@ ClawMem的风险：
 
 ## 五、当前状态（2026-05-06）
 
-### 5.1 ClawMem — 已安装，BM25可用
+### 5.1 ClawMem — 已安装，BM25可用，插件待Gateway重启激活
 
 **安装记录：**
 ```
@@ -225,35 +225,41 @@ ClawMem的风险：
 2. bun install -g clawmem@0.10.3（214包，92秒）
 3. clawmem init → DB: /root/.cache/clawmem/index.sqlite
 4. clawmem collection add /root/workspace/aios/core --name aios-core
-5. clawmem update → 索引76个md文件（note:74, progress:1, hub:1, decision:1）
+5. clawmem update → 索引80个md文件
+
+2026-05-07 修复（锋哥手动）：
+- 问题：CLI装在 /root/.bun/bin/clawmem 但不在PATH，Hermes找不到
+- 修复：ln -s /root/.bun/bin/clawmem /usr/local/bin/clawmem
+- 补.env：CLAWMEM_BIN=/usr/local/bin/clawmem + CLAWMEM_SERVE_MODE=managed + PORT=7438 + PROFILE=balanced
+- 验证：clawmem doctor全部通过，80文档索引，BM25搜索正常，REST API健康
 ```
 
-**环境变量（已写入~/.bashrc）：**
+**环境变量（~/.hermes/.env）：**
 ```bash
-export PATH="/root/.bun/bin:$PATH"
-export CLAWMEM_NO_LOCAL_MODELS="true"
-export CLAWMEM_EMBED_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
-export CLAWMEM_EMBED_API_KEY="sk-128088af83f6479faba62f4a93530033"
-export CLAWMEM_EMBED_MODEL="text-embedding-v3"
-export CLAWMEM_LLM_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
-export CLAWMEM_LLM_MODEL="qwen-plus"
+CLAWMEM_BIN=/usr/local/bin/clawmem
+CLAWMEM_SERVE_MODE=managed
+CLAWMEM_SERVE_PORT=7438
+CLAWMEM_PROFILE=balanced
 ```
 
 **当前可用功能：**
-- ✅ **BM25关键词搜索** — `clawmem search <query>` 正常工作，77个文档已索引
-- ✅ **混合搜索** — `clawmem query <query>` （BM25+向量融合，向量部分暂为0权重）
-- ✅ **文件监控** — `clawmem watch` 可以后台运行，自动感知core/文件变化
+- ✅ **BM25关键词搜索** — `clawmem search <query>` 正常工作，80个文档已索引
+- ✅ **独立CLI验证通过** — `clawmem doctor` all checks passed
+- ✅ **REST API** — /health + /retrieve 验证通过
+- ✅ **Hermes插件可加载** — ClawMemProvider加载验证通过，5个工具注册成功
 - ✅ **生命周期管理** — archive/restore/consolidate/curate
 
 **待解决问题：**
-- ⏳ **向量嵌入** — DashScope不支持batch input，2643个fragment embed失败。BM25已够用，后续如果文档量大升级向量搜索
-- ⏳ **A-MEM enrichment** — 实体提取依赖LLM，CLAWMEM_LLM_URL已配置DashScope但未验证
+- ⏳ **Gateway重启** — 需重启才能让插件在managed模式下自动拉起clawmem serve
+- ⏳ **向量嵌入** — 80个文档全部Unembedded，Vectors: no。BM25已够用，后续量大时升级
+- ⏳ **A-MEM enrichment** — `clawmem query` 需连localhost:8089 LLM，本地未开，暂不可用
 - ⏳ **watch守护进程** — 文件变化不会自动重索引，需要时手动 `clawmem update`
 
 **配置文件：**
+- CLI路径：`/usr/local/bin/clawmem` → `/root/.bun/install/global/node_modules/clawmem/`
 - 数据库：`/root/.cache/clawmem/index.sqlite`
 - 配置：`/root/.config/clawmem/index.yml`
-- 路径：`/usr/local/bin/clawmem` → `/root/.bun/install/global/node_modules/clawmem/`
+- Hermes .env：`CLAWMEM_BIN` + `CLAWMEM_SERVE_MODE` + `CLAWMEM_SERVE_PORT` + `CLAWMEM_PROFILE`
 
 ### 5.2 MemTensor (memos-local-plugin) — npm已装未启动
 
@@ -288,7 +294,7 @@ bash install.hermes.sh   # 初始化Python Provider
 | 层级 | 组件 | 状态 | 覆盖范围 |
 |------|------|------|----------|
 | **第一层：确定性规则** | SOUL.md + Hermes config | ✅ 已有，需强化 | 核心铁律（执行口令、建文档规则等） |
-| **第二层：自动记忆** | ClawMem (BM25) | ✅ 插件已激活，gateway重启后生效 | 压缩保护、跨session记忆注入 |
+| **第二层：自动记忆** | ClawMem (BM25) | ⚠️ CLI+索引正常，待Gateway重启激活插件 | 压缩保护、跨session记忆注入 |
 | **第三层：手动记忆** | daily日志 + TOPICS.md + memory | ✅ 已有 | 想法沉淀、复盘记录 |
 
 ### 5.4 Hermes插件激活记录

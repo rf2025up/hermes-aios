@@ -3,7 +3,7 @@
 用法: python3 paraformer_batch_v2.py [directory]
 自动扫描目录下所有m4a文件，跳过已完成的，每个结果立即保存。
 """
-import os, sys, json, time, requests, glob
+import os, sys, json, time, requests, glob, fcntl
 
 API_KEY = os.environ.get("DASHSCOPE_API_KEY", "sk-61ad5e6681a3414b8e660eaeaad1f957")
 os.environ["DASHSCOPE_API_KEY"] = API_KEY
@@ -92,6 +92,15 @@ def transcribe_one(file_path):
     }, None
 
 if __name__ == "__main__":
+    # 进程锁：防止多个cron同时运行
+    lock_path = os.path.join(RESULTS_DIR, ".transcribe.lock")
+    try:
+        lock_fd = open(lock_path, 'w')
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (IOError, OSError):
+        print("Another transcription process is running, exiting.", flush=True)
+        sys.exit(0)
+
     if len(sys.argv) < 2:
         # 默认扫描朋阳目录
         directory = "/mnt/h/抖音直播录制/"
