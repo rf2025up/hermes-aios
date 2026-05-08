@@ -58,23 +58,16 @@
 
 ## ⚙️ 系统运维
 
-> **唯一入口**：`core/运维总文档.md` — 所有运维问题的总索引，先查这里。
+> **唯一入口**：`core/HERMES-WSL2-运维方案.md` — Key/Fallback/Gateway/ClawMem完整运维方案。
 
 | 文件 | 说明 |
 |------|------|
-| **运维总文档.md** ⭐ | **运维唯一入口**：快速恢复+基础设施+Key管理+工具链+问题排查+定时任务+路径对照 |
+| **HERMES-WSL2-运维方案.md** ⭐ | **运维唯一文档**：架构总览+Key管理+Fallback+Gateway保活+ClawMem+诊断脚本+回滚策略 |
 | AIOS顶层文档-驾驭AI操作系统.md | 系统全景（飞书云文档也有） |
 | AI-OS重启恢复手册.md | Hermes挂了怎么恢复 |
-| 协作问题排查手册.md | 常见问题排查 |
-| 记忆恢复指南.md | 记忆系统恢复 |
+| Hermes使用过程问题总结.md | 所有使用问题+根因+方案（含建文档总纲） |
 | RF-Lenovo-Hermes安装指南.md | WSL2环境安装记录 |
-| INFRA.md | 基础设施（VPS/FRP/SSH/端口） |
-| **Hermes-WSL2-运维方案.md** | Key管理+Fallback+Gateway保活+ClawMem完整运维（2026-05-07更新） |
-| Hermes-WSL2-完整方案-已解决.md | 旧版，已被运维方案合并 |
-| CHANGELOG.md | 系统变更日志 |
-| OPERATING_SYSTEM.md | 操作系统配置 |
 | **HERMES-GIT-BACKUP.md** | Git仓库备份配置（仓库：https://github.com/rf2025up/hermes-aios） |
-| Hermes使用过程问题总结.md | 所有使用问题+根因+方案 |
 
 ## 📁 历史存档（OpenClaw迁移，不再活跃更新）
 

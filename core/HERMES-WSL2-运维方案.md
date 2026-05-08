@@ -1,6 +1,6 @@
 # Hermes WSL2：换 Key、Fallback、Gateway 保活、ClawMem 完整运维方案
 
-最后更新：2026-05-07
+最后更新：2026-05-08
 
 > 目标：以后更换 GLM / 阿里百炼 Key、调整模型 fallback、重启 Gateway、启用 ClawMem 时，有一份不泄露密钥、可回滚、可验证的标准操作文档。
 
@@ -44,6 +44,7 @@ ClawMem 配置：/root/.config/clawmem/index.yml
 - 只改 `.env` 不会自动影响已经运行中的 Gateway；要让新 key 生效，需要在合适时间重启 Gateway。
 - 外部 Agent 重启 Gateway 必须通过 Windows `schtasks`，不要直接 SSH 后运行 bat。
 - ClawMem 当前推荐使用 BM25 检索；不要直接拿 DashScope embedding 做批量向量化，除非 ClawMem 已修复 batch input 兼容。
+- **哪个有钱用哪个（2026-05-08铁律）**：所有 API key 配置，优先使用余额充足的 key。发现 key 失效（欠费/限流/认证失败）时，Agent 必须立即切换到可用 key 并更新所有相关配置（.env、auth.json、脚本优先级），不依赖固定优先级，不需要锋哥确认。工作不能停。
 
 ---
 

@@ -17,4 +17,285 @@
 [16/260] 科学设置薪酬提升老师动力.m4a OK (121.0min, 40256chars) -> 科学设置薪酬提升老师动力.md
 [17/260] 朋阳托管师学院_2026-03-18_21-02-22_full.m4a OK (119.1min, 41325chars) -> 朋阳托管师学院_2026-03-18_21-02-22.md
 [18/260] 朋阳托管师学院_2025-10-12_20-47-53.m4a OK (119.6min, 33024chars) -> 朋阳托管师学院_2025-10-12_20-47-53.md
-[19/260] 03-2025团队和人员盘点.m4a 
+[19/260] 03-2025团队和人员盘点.m4a [v3] 使用key: sk-...ee0915
+[v3] 模型优先级: fun-asr-2025-11-07 > paraformer-v1 > paraformer-v2
+Found 625 m4a files in /mnt/h/抖音直播录制/
+Already completed: 364
+Remaining: 261
+[1/261] Record_2025-08-26-20-44-08_2332cb9b27b851b548ba47a91682926c.m4a (126.4MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (125.0min, 45749chars, 114s)
+[2/261] Record_2025-08-27-20-48-13_2332cb9b27b851b548ba47a91682926c.m4a (58.8MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (57.8min, 18789chars, 55s)
+[3/261] Record_2025-08-27-21-55-02_2332cb9b27b851b548ba47a91682926c.m4a (55.4MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (54.1min, 17404chars, 61s)
+[4/261] Record_2025-09-24-21-16-55_2332cb9b27b851b548ba47a91682926c.m4a (63.3MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (62.4min, 23012chars, 57s)
+[5/261] test.m4a (35.3MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (58.6min, 20605chars, 45s)
+[6/261] 千人峰会_full.m4a (80.0MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (120.7min, 45213chars, 95s)
+[7/261] 告别开学混乱的“黄金21天”管控体系.m4a (39.0MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (63.5min, 23291chars, 51s)
+[8/261] 告别开学混乱的“黄金21天”管控体系_full.m4a (42.8MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (63.4min, 23272chars, 52s)
+[9/261] 复盘2团队成长盘点.m4a (119.2MB) [model=fun-asr-2025-11-07]
+    ✅ via fun-asr-2025-11-07
+  ✅ OK (117.0min, 43316chars, 108s)
+[10/261] 复盘3产品招生盘点.m4a (66.9MB) [model=fun-asr-2025-11-07]
+    ⚠️ fun-asr-2025-11-07 异常: Invalid task, task create failed: {"status_code": 403, "request_id": "94e4956b-2283-9454-b7ea-2c6d5507490b", "code": "AllocationQuota.FreeTierOnly", "message": "The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the \"use free tier only\" mode in the management console.", "output": null, "usage": null}
+    ⚠️ paraformer-v1 异常: Invalid task, task create failed: {"status_code": 403, "request_id": "92a11657-8443-9c5b-b736-dbc0847356ae", "code": "AllocationQuota.FreeTierOnly", "message": "The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the \"use free tier only\" mode in the management console.", "output": null, "usage": null}
+    ✅ via paraformer-v2
+  ✅ OK (70.7min, 23490chars, 68s)
+[11/261] 复盘3产品招生盘点_full.m4a (68.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (70.7min, 23492chars, 67s)
+[12/261] 如何提升晚辅效率_full.m4a (95.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (120.7min, 41360chars, 146s)
+[13/261] 如何提升晚辅质量.m4a (149.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (161.0min, 53863chars, 125s)
+[14/261] 如何提升晚辅质量_full.m4a (99.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (161.0min, 53859chars, 153s)
+[15/261] 寒假托管怎么做.m4a (33.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (35.6min, 12239chars, 50s)
+[16/261] 寒假托管精准招生.m4a (110.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (118.1min, 39435chars, 108s)
+[17/261] 寒假招生全解.m4a (50.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (88.7min, 29225chars, 111s)
+[18/261] 寒假期间招聘与培训_full.m4a (88.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (136.9min, 47695chars, 166s)
+[19/261] 已转码2024-11-03 20-50-35.m4a (105.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (113.4min, 34859chars, 106s)
+[20/261] 已转码2024-11-04 20-47-57.m4a (5.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (5.5min, 1969chars, 21s)
+[21/261] 已转码2024-11-04 21-40-56.m4a (59.8MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (64.5min, 22477chars, 61s)
+[22/261] 已转码2024-12-29 20-28-56.m4a (79.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (131.9min, 43785chars, 170s)
+[23/261] 已转码2024-12-30 21-27-49.m4a (75.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (126.4min, 42178chars, 116s)
+[24/261] 已转码2024-12-31 21-48-18.m4a (42.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (70.9min, 23577chars, 89s)
+[25/261] 已转码2025-01-01 20-58-53.m4a (79.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (131.6min, 43737chars, 148s)
+[26/261] 已转码2025-01-02 21-00-46.m4a (71.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (118.5min, 39411chars, 99s)
+[27/261] 已转码2025-01-03 21-01-24.m4a (74.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (122.7min, 42784chars, 147s)
+[28/261] 已转码2025-01-04 20-31-18.m4a (100.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (165.0min, 56692chars, 173s)
+[29/261] 已转码2025-01-05 20-32-36.m4a (77.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (132.1min, 38891chars, 148s)
+[30/261] 已转码2025-01-06 20-56-16.m4a (82.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (137.1min, 47693chars, 91s)
+[31/261] 已转码2025-01-10 10-25-07.m4a (49.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (76.0min, 18420chars, 84s)
+[32/261] 已转码2025-01-14 20-29-57.m4a (32.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (54.5min, 18684chars, 45s)
+[33/261] 已转码2025-01-14 21-35-38.m4a (54.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (94.4min, 31754chars, 81s)
+[34/261] 已转码2025-01-15 20-31-34.m4a (74.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (125.9min, 43337chars, 147s)
+[35/261] 已转码2025-01-16 20-31-01.m4a (70.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (116.1min, 39667chars, 100s)
+[36/261] 已转码2025-01-17 20-30-59.m4a (85.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (145.9min, 48690chars, 97s)
+[37/261] 已转码2025-01-18 20-30-53.m4a (79.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (117.0min, 39325chars, 137s)
+[38/261] 已转码2025-03-25 20-38-03.m4a (70.8MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (117.0min, 40218chars, 136s)
+[39/261] 已转码2025-03-30 14-57-44.m4a (0.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.0min, 20chars, 3s)
+[40/261] 已转码2025-03-31 23-12-34.m4a (0.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.1min, 28chars, 3s)
+[41/261] 已转码2025-04-16 09-57-09.m4a (59.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (62.6min, 20264chars, 86s)
+[42/261] 已转码2025-04-16 09-57-09_full.m4a (42.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (62.6min, 20262chars, 88s)
+[43/261] 已转码2025-04-18 09-31-48.m4a (82.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (87.1min, 26291chars, 96s)
+[44/261] 已转码2025-04-18 09-31-48_full.m4a (58.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (87.1min, 26283chars, 80s)
+[45/261] 已转码2025-04-23 21-00-03.m4a (101.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (107.8min, 37326chars, 99s)
+[46/261] 已转码2025-04-24 21-00-51.m4a (117.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (124.8min, 43022chars, 166s)
+[47/261] 已转码2025-05-27 20-36-05.m4a (25.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (26.4min, 7579chars, 27s)
+[48/261] 已转码2025-05-27 20-36-05_full.m4a (17.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (26.4min, 7580chars, 22s)
+[49/261] 已转码2025-06-17 10-17-47.m4a (4.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (4.5min, 843chars, 7s)
+[50/261] 已转码2025-06-17 10-17-47_full.m4a (3.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (4.5min, 836chars, 12s)
+[51/261] 已转码2025-06-17 10-31-46.m4a (0.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.4min, 62chars, 3s)
+[52/261] 已转码2025-06-17 10-31-46_full.m4a (0.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.3min, 71chars, 5s)
+[53/261] 已转码2025-06-19 08-57-04.m4a (15.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (13.4min, 3636chars, 17s)
+[54/261] 已转码2025-06-19 08-57-04_full.m4a (10.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (13.4min, 3630chars, 21s)
+[55/261] 已转码2025-06-19 09-14-46.m4a (6.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (6.5min, 1913chars, 12s)
+[56/261] 已转码2025-06-19 09-14-46_full.m4a (4.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (6.4min, 1914chars, 17s)
+[57/261] 已转码2025-06-19 09-22-28.m4a (2.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (2.2min, 637chars, 7s)
+[58/261] 已转码2025-06-19 09-22-28_full.m4a (1.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (2.2min, 637chars, 7s)
+[59/261] 已转码2025-06-19 09-25-21.m4a (0.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (1.0min, 263chars, 7s)
+[60/261] 已转码2025-06-19 09-25-21_full.m4a (0.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (1.0min, 264chars, 4s)
+[61/261] 已转码2025-06-19 09-26-48.m4a (0.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.8min, 221chars, 7s)
+[62/261] 已转码2025-06-19 09-26-48_full.m4a (0.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (0.8min, 221chars, 4s)
+[63/261] 已转码2025-06-19 09-28-46.m4a (66.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (70.2min, 21214chars, 67s)
+[64/261] 已转码2025-06-19 09-28-46_full.m4a (43.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (70.2min, 21217chars, 83s)
+[65/261] 已转码2025-06-20 09-03-52.m4a (79.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (78.1min, 20295chars, 106s)
+[66/261] 已转码2025-06-20 09-03-52_full.m4a (52.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (78.1min, 20287chars, 69s)
+[67/261] 已转码2025-06-24 09-14-45.m4a (68.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (68.3min, 17140chars, 93s)
+[68/261] 已转码2025-06-24 09-14-45_full.m4a (45.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (68.4min, 17133chars, 68s)
+[69/261] 已转码2025-06-26 13-44-11.m4a (1.8MB) [model=paraformer-v2]
+  ❌ FAIL (task FAILED: SUCCESS_WITH_NO_VALID_FRAGMENT, 4s)
+[70/261] 已转码2025-06-26 13-44-11_full.m4a (1.1MB) [model=paraformer-v2]
+  ❌ FAIL (task FAILED: SUCCESS_WITH_NO_VALID_FRAGMENT, 3s)
+[71/261] 已转码2025-06-26 14-01-06.m4a (84.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (83.4min, 24648chars, 113s)
+[72/261] 已转码2025-06-26 14-01-06_full.m4a (54.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (83.4min, 24633chars, 70s)
+[73/261] 已转码2025-07-28 20-49-11.m4a (9.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (10.3min, 3620chars, 17s)
+[74/261] 已转码2025-07-28 20-59-52.m4a (28.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (30.8min, 11048chars, 39s)
+[75/261] 已转码2025-07-28 21-31-28.m4a (85.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (91.4min, 32245chars, 70s)
+[76/261] 年关续费准备 (2).m4a (27.8MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (29.7min, 10240chars, 33s)
+[77/261] 年关续费准备 (2)_full.m4a (18.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (29.7min, 10229chars, 42s)
+[78/261] 年关续费准备.m4a (99.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (106.5min, 35817chars, 152s)
+[79/261] 年关续费准备_full.m4a (66.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (106.5min, 35817chars, 90s)
+[80/261] 年终招聘与周期.m4a (109.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (117.2min, 40407chars, 154s)
+[81/261] 年终招聘与周期_full.m4a (71.6MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (117.2min, 40387chars, 99s)
+[82/261] 开学第一课.m4a (35.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (62.2min, 20457chars, 77s)
+[83/261] 开学第一课_full.m4a (38.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (62.3min, 20463chars, 73s)
+[84/261] 录制_2025_04_19_11_21_18_882.m4a (37.0MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (39.3min, 11117chars, 51s)
+[85/261] 录制_2025_04_19_11_21_18_882_full.m4a (24.7MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (39.3min, 11111chars, 27s)
+[86/261] 打造积极招生团队.m4a (112.1MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (119.6min, 35217chars, 91s)
+[87/261] 打造积极招生团队_full.m4a (75.9MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (119.6min, 35222chars, 111s)
+[88/261] 托管小白逆袭攻略.m4a (49.4MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (87.5min, 28131chars, 69s)
+[89/261] 托管小白逆袭攻略_full.m4a (53.8MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (87.5min, 28136chars, 71s)
+[90/261] 控班静悄悄.m4a (71.3MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (125.5min, 42469chars, 104s)
+[91/261] 控班静悄悄_full.m4a (78.5MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (125.4min, 42461chars, 145s)
+[92/261] 提升老师专业度_full.m4a (85.2MB) [model=paraformer-v2]
+    ✅ via paraformer-v2
+  ✅ OK (134.7min, 47715chars, 123s)
+[93/261] 收心班流程招生.m4a (155.0MB) [model=paraformer-v2]

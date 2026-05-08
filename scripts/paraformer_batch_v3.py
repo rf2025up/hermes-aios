@@ -21,7 +21,7 @@ def get_all_keys():
     with open(auth_path) as f:
         data = json.load(f)
     keys = []
-    priority_order = ["bailian-primary-env", "bailian-backup-202605"]
+    priority_order = ["bailian-backup-202605", "bailian-primary-env"]
     seen = set()
     for label in priority_order:
         for e in data.get("credential_pool", {}).get("custom:bailian", []):
