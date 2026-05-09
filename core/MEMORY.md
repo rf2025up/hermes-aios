@@ -121,8 +121,8 @@
 
 ## 视频转写工具
 - **脚本**：`paraformer_batch_v3.py`（断点续传、逐个保存、600秒超时防挂死）
-- **已有**：48个有效md + 351个批量转写完成（56.2%），剩余274个
-- **DashScope状态**：旧key欠费，备用key `bailian-backup-202605`（auth.json），paraformer-v2免费额度耗尽，**等锋哥后台开启付费模式后恢复**
+- **已有**：363个已转写（58%，625个总计），朋阳目录262个待转写
+- **DashScope状态**：主key `sk-128...033`欠费（2026-05-08确认），已切换到备用key `bailian-backup-202605`（auth.json priority 0）。.env和脚本均已更新为备用key优先。**待办：锋哥后台给主key充值后切回，或开启付费模式**
 - **结果文件**：`scripts/transcription_results/paraformer_results_v2.json`
 - **注意**：禁止本地模型转写，用DashScope Paraformer API
 

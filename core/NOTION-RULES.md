@@ -1,6 +1,7 @@
 # Notion 配置与规则
 
-> 2026-04-20 | 交由OpenClaw负责Notion操作，锋哥不再管
+> 2026-05-09 更新：Hermes负责所有Notion操作，锋哥只需说"XX花了XX元"
+> 2026-04-20 初始创建
 
 ---
 
@@ -87,14 +88,13 @@ response = requests.post("https://api.notion.com/v1/pages", headers=headers, jso
 ## ⚠️ 已知坑
 
 1. **必须用 Notion-Version: 2022-06-28**，新版API返回空属性
-2. ~~个人账户页面未共享给集成~~（2026-04-21已修复，可正常关联）
-3. **种类是select类型**，必须使用已存在的选项，不能随意写新的
-4. **項目是title类型**，字段名是繁体"項目"不是简体"项目"
+2. **种类是select类型**，必须使用已存在的选项，不能随意写新的
+3. **項目是title类型**，字段名是繁体"項目"不是简体"项目"
 
 ---
 
-## OpenClaw职责
+## Hermes记账职责
 
-- 老板在飞书/微信说"XX花了XX元"→ OpenClaw自动记到Notion
+- 锋哥在飞书说"XX花了XX元" → Hermes自动记到Notion
 - 默认营业账户，说"个人消费"才用个人账户
 - 记完回复确认
