@@ -1,91 +1,102 @@
-# AIOS 本地索引中心
+# AIOS 业务主线版索引
 
-> 最后更新: 2026-05-09（v2升级清理后）
-> 用途：每次新session启动，读这个文件就知道去哪找什么。所有文档的一张地图。
+> 最后更新: 2026-05-11（v2业务主线版）
+> 用途：每次新session读这个文件，知道去哪找什么。
 
 ---
 
-## 🔥 每次对话都要读
+## 🔧 运维备忘录（OPS-MEMO.md）
+
+> **系统出问题时先查这个文件**：技术架构、API配置、Key管理、Gateway重启、ClawMem、Notion记账、故障排查速查。
+
+## 🔥 每次对话必读
 
 | 文件 | 路径 | 作用 |
 |------|------|------|
-| SOUL.md | core/SOUL.md | 行为准则、反高级逃避协议、沟通原则 |
-| MEMORY.md | core/MEMORY.md | 长期记忆（自动注入system prompt） |
+| BUSINESS-SOUL.md | core/BUSINESS-SOUL.md | 业务主控台身份+判断铁律+管理动作系统 |
+| MEMORY.md | ~/.hermes/memories/MEMORY.md | 长期记忆（自动注入） |
 | USER.md | core/USER.md | 锋哥偏好和习惯 |
-| TODO.md | core/TODO.md | 任务清单（主战役+待办） |
+| TODO.md | core/TODO.md | 任务清单 |
 
-## 📊 业务相关
+## 🎯 主战役驾驶舱
 
-| 文件 | 说明 |
-|------|------|
-| SCOREBOARD.md | 业务指标看板（6个关键数字） |
-| DECISIONS.md | 关键决策记录（含执行状态） |
-| TOPICS.md | 议题积累（想法蓄水池） |
-| 幼小衔接完整方案.md | 幼小衔接招生完整方案（537行） |
-| PEOPLE.md | 相关人物/学生跟进（⚠️ 需更新） |
+| 文件 | 路径 | 作用 |
+|------|------|------|
+| ACTIVE_TASK.md | core/ACTIVE_TASK.md | 当前唯一主战役+阶段目标+关键战场 |
+| THIS_WEEK_TOP3.md | core/THIS_WEEK_TOP3.md | 本周3个业务动作+3个管理重点 |
+| SCOREBOARD.md | core/SCOREBOARD.md | 6层指标看板（北极星→招生→交付→管理→纪律→节点） |
 
-## 📝 内容与知识
+## 💼 业务文档
 
-| 文件 | 说明 |
-|------|------|
-| 全年直播内容沉淀与AI知识卡片工作流.md | 直播知识沉淀系统设计 |
-| 视频转文档项目文档.md | 612个音频转写工作流（当前主线） |
-| 一号位工作设计背后的思考指南.md | 一号位工作设计（大型文档，2743行） |
-| 决心修炼AMCC.md | 决心修炼方法论 |
-| 人机协作指南.md | AIOS协作宪法详细版 |
-| 认知清空指南.md | 认知重置方法 |
+| 文件 | 路径 | 作用 |
+|------|------|------|
+| DECISIONS.md | core/DECISIONS.md | 关键决策记录（含执行状态） |
+| PEOPLE.md | core/PEOPLE.md | 学生/家长/老师跟进表 |
+| 幼小衔接完整方案.md | core/business/01_幼小衔接/ | 幼小衔接招生方案 |
 
-## 🧠 认知与修炼
+## 📁 目录结构
 
-| 文件 | 说明 |
-|------|------|
-| 从信息到结果（母文档）.md | 信息处理7问、行动链路 |
-| 自我诊断-高级逃避与行动机制.md | 逃避识别和对抗 |
-| 锋哥协作全景MECE报告.md | 协作关系全景 |
-
-## 🎓 教育Agent
-
-| 文件 | 说明 |
-|------|------|
-| 孩子教育Agent完整架构方案.md | 独立实例架构：5角色+家庭共育+部署方案 |
-| 孩子教育Agent新人配置.md | 教育Agent配置详情 |
-
-## 🧠 记忆系统
-
-| 文件 | 说明 |
-|------|------|
-| Agent记忆方案深度调研.md | MemTensor/ClawMem/Mem0/mem9四方案对比 |
-
-## ⚙️ 系统运维
-
-> **唯一入口**：`core/HERMES-WSL2-运维方案.md`
-
-| 文件 | 说明 |
-|------|------|
-| **HERMES-WSL2-运维方案.md** ⭐ | 运维唯一文档：架构+Key+Fallback+Gateway+ClawMem |
-| Hermes使用过程问题总结.md | 使用问题+根因+方案 |
-| AIOS顶层文档-驾驭AI操作系统.md | 系统全景 |
-| AI-OS重启恢复手册.md | 系统恢复手册 |
-| RF-Lenovo-Hermes安装指南.md | WSL2安装记录 |
-| HERMES-GIT-BACKUP.md | Git仓库备份配置 |
-| NOTION-RULES.md | Notion记账规则 |
-| CHANGELOG.md | 系统变更日志 |
-| OPERATING_SYSTEM.md | 操作原则 |
-
-## 📁 子目录
-
-| 目录 | 内容 |
-|------|------|
-| daily/ | 21个日志（2026-04-15起）+ v2-upgrade-tasks.md |
-| inbox/ | 临时文件 |
-| ARCHIVE/ | 已归档文件（18个，OpenClaw时代/废弃/乱码） |
+```
+core/
+├── BUSINESS-SOUL.md     # 业务主控台身份
+├── ACTIVE_TASK.md       # 当前主战役
+├── THIS_WEEK_TOP3.md    # 本周重点
+├── SCOREBOARD.md        # 数字看板
+├── TODO.md              # 任务清单
+├── DECISIONS.md         # 决策记录
+├── PEOPLE.md            # 人物跟进
+├── INDEX.md             # 本文件
+├── CHANGELOG.md         # 变更日志
+│
+├── business/            # 业务文档（按战场分）
+│   ├── 01_幼小衔接/
+│   ├── 02_招生增长/
+│   ├── 03_家长沟通/
+│   ├── 04_体验课转化/
+│   ├── 05_朋友圈宣传/
+│   ├── 06_老师管理/
+│   ├── 07_托管交付/
+│   ├── 08_续费准备/
+│   ├── 09_暑假班/
+│   ├── 10_现场管理/
+│   └── 11_会议驱动结果/
+│
+├── runtime/             # 运行时记录
+│   ├── daily/           # 每日日志
+│   ├── weekly/          # 周报
+│   ├── meetings/        # 会议纪要
+│   ├── inspections/     # 巡查记录
+│   └── followups/       # 跟进记录
+│
+├── assets/              # 可复用资产
+│   ├── scripts_话术/
+│   ├── sop_流程/
+│   ├── templates_模板/
+│   ├── cases_案例/
+│   └── posts_朋友圈/
+│
+├── inbox/               # 原始素材（待处理）
+│
+├── ARCHIVE/             # 已归档（v2升级前的非业务文件）
+└── backups/             # 备份
+```
 
 ## ☁️ 飞书云文档
 
-| 文档 | 链接 |
-|------|------|
-| AIOS驾驶舱v2 | https://bytedance.feishu.cn/docx/DM1HdENKeo1KBcx6giEc8qWBnJh |
-| AIOS顶层文档（完整版） | https://bytedance.feishu.cn/docx/UFTkdwXzcoBbucxX62rcjIPfnOg |
-| 全年直播知识沉淀工作流 | https://bytedance.feishu.cn/docx/LGIRd2kcsordQQx0jaGcxXfSnNe |
-| Hermes WSL2运维方案 | https://bytedance.feishu.cn/docx/W0svdtTXyoSnqwxT2XpcTudMnDe |
-| TOPICS 想法池 | https://bytedance.feishu.cn/docx/PV4udibIMobQmgxW8FFcUyI9nGh |
+| 文档 | 用途 | 链接 |
+|------|------|------|
+| AIOS驾驶舱 | 主战役状态+6关键数字 | DkKEdWvbYoK1qfxk3MEcP0cjnbf |
+| AIOS顶层文档 | 知识库（8章节） | UFTkdwXzcoBbucxX62rcjIPfnOg |
+
+## 📦 归档位置
+
+v2升级前的非业务文件已归档到：
+- **本地**: `core/ARCHIVE/`
+- **H盘**: `H:\Hermes\v2升级归档\`（含归档清单.md）
+
+## 🔑 关键规则
+
+- 日志路径: `core/runtime/daily/YYYY-MM-DD.md`（顶部必须有⚡关键进展区块）
+- 记账走Notion（不走daily）
+- 核心文件改动必须锋哥确认
+- SOUL.md（.hermes/）= 系统级 | BUSINESS-SOUL.md（core/）= 业务身份副本
