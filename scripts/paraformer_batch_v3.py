@@ -108,11 +108,17 @@ def transcribe_one(file_path):
     if not file_id:
         return None, "no file_id"
 
-    # 2. Get URL
-    file_info = Files.get(file_id=file_id)
-    file_url = file_info.output.get('url', '')
+    # 2. Get URL (with retry, Files.get may return None for newly uploaded files)
+    file_url = ''
+    for _retry in range(3):
+        file_info = Files.get(file_id=file_id)
+        if file_info.output is not None:
+            file_url = file_info.output.get('url', '')
+            if file_url:
+                break
+        time.sleep(2)
     if not file_url:
-        return None, "no url"
+        return None, "no url (Files.get returned None after retries)"
 
     # 3. 尝试当前模型，失败则切换
     tried = []
